@@ -1,0 +1,40 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<TestTask.ViewModels.UserIndexViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Users")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, new { @class = "userName", @id = item.Id + "userName" })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "delete", @id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+@Scripts.Render("~/bundles/deleteuser")

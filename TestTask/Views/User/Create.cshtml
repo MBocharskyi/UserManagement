@@ -1,0 +1,29 @@
+﻿@model TestTask.ViewModels.UserCreateEditViewModel
+
+@{
+    ViewBag.Title = "Create user";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "createEditForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Create user</h4>
+        <hr />
+        @Html.Partial("_CreateEdit", Model)
+
+        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>*@
+        <hr />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
